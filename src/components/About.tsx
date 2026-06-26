@@ -136,36 +136,7 @@ export default function About() {
               With a growth-oriented mindset, I am driven by the challenges of edge-computing anomalies, mobile application optimization, and network security modules. I aim to write highly refined, production-ready code that solves tangible, real-world problems.
             </motion.p>
 
-            {/* Stats Row */}
-            <motion.div
-              variants={textVariants}
-              className="grid grid-cols-2 gap-6 mt-6 border-t border-dolphin/10 pt-8"
-            >
-              <div className="flex flex-col gap-1">
-                <Counter value={5} suffix="+" />
-                <span className="text-[10px] uppercase tracking-wider text-dolphin/50 font-semibold">
-                  Core AI/ML Projects
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Counter value={90} suffix=".6%" />
-                <span className="text-[10px] uppercase tracking-wider text-dolphin/50 font-semibold">
-                  HSC CBSE Class XII Score
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Counter value={2027} />
-                <span className="text-[10px] uppercase tracking-wider text-dolphin/50 font-semibold">
-                  Expected Graduation
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Counter value={1} suffix=" Intern" />
-                <span className="text-[10px] uppercase tracking-wider text-dolphin/50 font-semibold">
-                  App Development Internship
-                </span>
-              </div>
-            </motion.div>
+
           </motion.div>
 
           {/* Portrait/Card Column */}
