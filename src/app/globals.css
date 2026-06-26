@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -8,6 +9,9 @@
   --amethyst: #AB92BF;
   --amethyst-light: rgba(171, 146, 191, 0.15);
   --amethyst-medium: rgba(171, 146, 191, 0.4);
+  
+  --font-syne: 'Syne', sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
 @theme {
@@ -19,8 +23,8 @@
   --color-amethyst-light: var(--amethyst-light);
   --color-amethyst-medium: var(--amethyst-medium);
 
-  --font-syne: var(--font-syne), sans-serif;
-  --font-inter: var(--font-inter), sans-serif;
+  --font-syne: var(--font-syne);
+  --font-inter: var(--font-inter);
 }
 
 /* Custom Selection Style */
