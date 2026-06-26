@@ -160,8 +160,8 @@ export default function About() {
               {/* Nested image card container with parallax depth */}
               <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-linen border border-dolphin/5">
                 <Image
-                  src="/profile_avatar.png"
-                  alt="Gracious Joseph Ben avatar illustration"
+                  src="/profile_portrait.jpg"
+                  alt="Gracious Joseph Ben portrait"
                   fill
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   priority
