@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDF1E2;
+  --foreground: #655A7C;
+  --linen: #FDF1E2;
+  --dolphin: #655A7C;
+  --amethyst: #AB92BF;
+  --amethyst-light: rgba(171, 146, 191, 0.15);
+  --amethyst-medium: rgba(171, 146, 191, 0.4);
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-linen: var(--linen);
+  --color-dolphin: var(--dolphin);
+  --color-amethyst: var(--amethyst);
+  --color-amethyst-light: var(--amethyst-light);
+  --color-amethyst-medium: var(--amethyst-medium);
+
+  --font-syne: var(--font-syne), sans-serif;
+  --font-inter: var(--font-inter), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom Selection Style */
+::selection {
+  background-color: var(--amethyst-medium);
+  color: #1b1622;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--linen);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Lenis smooth scrolling support */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hide standard scrollbars for a cleaner UI */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--linen);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--amethyst-medium);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amethyst);
+}
+
+/* Custom cursor and interactive animations */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--amethyst);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor.hovered {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(171, 146, 191, 0.3);
+  mix-blend-mode: normal;
+  border: 1px solid var(--amethyst);
+}
+
+/* Glassmorphism utility */
+.glassmorphism {
+  background: rgba(253, 241, 226, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(101, 90, 124, 0.1);
+}
+
+/* Parallax dots background pattern */
+.dot-matrix {
+  background-image: radial-gradient(var(--dolphin) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.05;
 }
