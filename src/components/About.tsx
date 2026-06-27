@@ -191,7 +191,7 @@ export default function About() {
               {/* Nested image card container with parallax depth */}
               <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-linen border border-dolphin/5">
                 <Image
-                  src="/profile_portrait.png"
+                  src="/portfolio/profile_portrait.png"
                   alt="Gracious Joseph Ben portrait"
                   fill
                   unoptimized

@@ -313,7 +313,7 @@ export default function Experience() {
                   data-cursor="MOCKUP"
                 >
                   <Image
-                    src="/experience_phone.png"
+                    src="/portfolio/experience_phone.png"
                     alt="Notes Cleanser App Mockup"
                     fill
                     unoptimized

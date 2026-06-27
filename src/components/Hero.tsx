@@ -293,7 +293,7 @@ export default function Hero() {
               {/* Anime portrait image, unoptimized, fills bounds */}
               <div className="relative w-full h-full overflow-visible">
                 <Image
-                  src="/profile_anime_transparent.png"
+                  src="/portfolio/profile_anime_transparent.png"
                   alt="Gracious Joseph Ben - Semi-realistic anime portrait"
                   fill
                   unoptimized

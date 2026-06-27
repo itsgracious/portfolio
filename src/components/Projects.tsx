@@ -36,10 +36,10 @@ const projectsList: Project[] = [
     visualType: "camera",
     blueprintDetail: "System Architecture: CCTV Input -> YOLOv8 Detection -> Tracker Module -> Tesseract OCR (Licence Plate) -> JSON Cataloguer -> Tkinter Search UI. Supports real-time filter playback and multi-camera routing overlay.",
     images: [
-      "/cypher_1.png",
-      "/cypher_2.png",
-      "/cypher_3.png",
-      "/cypher_4.jpg"
+      "/portfolio/cypher_1.png",
+      "/portfolio/cypher_2.png",
+      "/portfolio/cypher_3.png",
+      "/portfolio/cypher_4.jpg"
     ]
   },
   {
@@ -57,10 +57,10 @@ const projectsList: Project[] = [
     visualType: "cleaner",
     blueprintDetail: "Local Android Filesystem → Media Collection (photo_manager) → Image/PDF Preprocessing (pdfx) → TensorFlow Lite Inference Engine → Confidence-Based Note Classification → Review Interface → Storage Reclamation Analytics → Secure User-Confirmed Deletion.",
     images: [
-      "/cleanser_cover.png",
-      "/cleanser_4.jpg",
-      "/cleanser_1.jpg",
-      "/cleanser_3.jpg"
+      "/portfolio/cleanser_cover.png",
+      "/portfolio/cleanser_4.jpg",
+      "/portfolio/cleanser_1.jpg",
+      "/portfolio/cleanser_3.jpg"
     ]
   },
   {
@@ -79,10 +79,10 @@ const projectsList: Project[] = [
     visualType: "agents",
     blueprintDetail: "Flowchart: User Resume/Preferences -> Profile Agent -> Vector DB retrieval -> Blueprint Generator Agent -> Pydantic Schema Validator -> Output: structured system documentation, architecture SVGs, and roadmaps.",
     images: [
-      "/launchpad_1.png",
-      "/launchpad_2.png",
-      "/launchpad_3.png",
-      "/launchpad_4.png"
+      "/portfolio/launchpad_1.png",
+      "/portfolio/launchpad_2.png",
+      "/portfolio/launchpad_3.png",
+      "/portfolio/launchpad_4.png"
     ]
   },
   {
@@ -193,10 +193,10 @@ function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
 
   const images = project.images;
   const coverImage = project.id === "cypher" 
-    ? "/cypher_1.png" 
+    ? "/portfolio/cypher_1.png" 
     : project.id === "notescleanser" 
-      ? "/cleanser_2.png" 
-      : "/launchpad_cover.jpg";
+      ? "/portfolio/cleanser_2.png" 
+      : "/portfolio/launchpad_cover.jpg";
   
   const isMobile = windowSize.width < 640;
   const isWidescreen = project.id === "cypher" || project.id === "launchpad";
