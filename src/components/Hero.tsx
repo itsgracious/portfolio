@@ -205,7 +205,7 @@ export default function Hero() {
                   <Code2 className="w-4 h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
-                  <HeroCounter value={12} suffix="+" />
+                  <HeroCounter value={10} suffix="+" />
                   <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     Projects<br />Completed
                   </span>
@@ -218,7 +218,7 @@ export default function Hero() {
                   <GitFork className="w-4 h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
-                  <HeroCounter value={20} suffix="+" />
+                  <HeroCounter value={8} suffix="+" />
                   <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     GitHub<br />Repos
                   </span>
@@ -231,7 +231,7 @@ export default function Hero() {
                   <GitCommit className="w-4 h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
-                  <HeroCounter value={300} suffix="+" />
+                  <HeroCounter value={70} suffix="+" />
                   <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     Commits<br />This Year
                   </span>
@@ -264,7 +264,7 @@ export default function Hero() {
 
               <Magnetic>
                 <a
-                  href="/resume.pdf"
+                  href="/resume_final (1).pdf"
                   download
                   className="px-2 py-3 text-dolphin/70 hover:text-dolphin rounded-full font-bold text-[10px] uppercase tracking-wider transition-colors cursor-none flex items-center gap-1.5 border-b border-dashed border-dolphin/20 hover:border-dolphin"
                 >

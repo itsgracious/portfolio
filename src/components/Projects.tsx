@@ -74,7 +74,7 @@ const projectsList: Project[] = [
       "Designed a modular multi-agent system for profile analysis, research retrieval, and academic report creation.",
       "Generates structured outputs including problem statements, architecture diagrams, and technology stacks."
     ],
-    github: "https://github.com/itsgracious",
+    github: "https://github.com/Neha7010/LaunchPadAI",
     live: "https://huggingface.co/spaces/Gracykutty/launchpad-ai",
     visualType: "agents",
     blueprintDetail: "Flowchart: User Resume/Preferences -> Profile Agent -> Vector DB retrieval -> Blueprint Generator Agent -> Pydantic Schema Validator -> Output: structured system documentation, architecture SVGs, and roadmaps.",

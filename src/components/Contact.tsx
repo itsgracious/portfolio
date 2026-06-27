@@ -14,16 +14,43 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: "New Contact Form Submission from Portfolio",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSent(true);
+        setFormState({ name: "", email: "", message: "" });
+        setTimeout(() => setIsSent(false), 3000);
+      } else {
+        console.error("Web3Forms Submission Error:", result);
+        alert("Oops! Something went wrong. Please try again or email directly.");
+      }
+    } catch (error) {
+      console.error("Web3Forms Network Error:", error);
+      alert("Network error. Please try again or email directly.");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSent(false), 3000);
-    }, 1500);
+    }
   };
 
   const socialLinks = [
