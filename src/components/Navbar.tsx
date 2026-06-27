@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Home, User, Laptop, FolderGit, Briefcase, Mail } from "lucide-react";
 import Magnetic from "./Magnetic";
 
 const navItems = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Skills", id: "skills" },
-  { label: "Projects", id: "projects" },
-  { label: "Experience", id: "experience" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", id: "home", icon: <Home className="w-3.5 h-3.5" /> },
+  { label: "About", id: "about", icon: <User className="w-3.5 h-3.5" /> },
+  { label: "Skills", id: "skills", icon: <Laptop className="w-3.5 h-3.5" /> },
+  { label: "Projects", id: "projects", icon: <FolderGit className="w-3.5 h-3.5" /> },
+  { label: "Experience", id: "experience", icon: <Briefcase className="w-3.5 h-3.5" /> },
+  { label: "Contact", id: "contact", icon: <Mail className="w-3.5 h-3.5" /> },
 ];
 
 export default function Navbar() {
@@ -141,9 +141,10 @@ export default function Navbar() {
                       />
                     )}
                     
-                    {/* Label */}
-                    <span className={`relative z-10 ${isActive ? "text-amethyst font-semibold" : ""}`}>
-                      {item.label}
+                    {/* Label/Icon */}
+                    <span className={`relative z-10 flex items-center justify-center ${isActive ? "text-amethyst font-semibold" : ""}`}>
+                      <span className="sm:hidden flex items-center justify-center">{item.icon}</span>
+                      <span className="hidden sm:inline">{item.label}</span>
                     </span>
 
                     {/* Hover indicator line */}

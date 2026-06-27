@@ -277,7 +277,7 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Blended Portrait and Floating Badges */}
-          <div className="col-span-1 lg:col-span-5 flex justify-center lg:justify-end items-end relative self-end pt-12 pb-0 lg:-mb-12">
+          <div className="col-span-1 lg:col-span-5 flex justify-center lg:justify-end items-end relative self-end pt-24 sm:pt-12 pb-0 lg:-mb-12">
             
             {/* Floating circular glow behind the portrait */}
             <div className="absolute w-[360px] h-[360px] bg-amethyst/20 rounded-full blur-[70px] pointer-events-none z-0" />
