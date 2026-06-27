@@ -150,7 +150,7 @@ export default function Hero() {
       </div>
 
       {/* Top Navbar Space Filler */}
-      <div className="w-full flex justify-between items-center z-10">
+      <div className="w-full hidden sm:flex justify-between items-center z-10">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-amethyst rounded-full" />
           <span className="text-[9px] uppercase tracking-[0.25em] text-dolphin/50 font-bold font-syne">
@@ -179,7 +179,7 @@ export default function Hero() {
 
             {/* Main Header with lavender underline */}
             <div className="flex flex-col gap-1">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-dolphin font-syne leading-[1.03]">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-dolphin font-syne leading-[1.03]">
                 I build <br />
                 <span className="text-amethyst font-normal italic font-syne pr-2">intelligent</span> <br />
                 <div className="relative inline-block">
@@ -198,41 +198,41 @@ export default function Hero() {
             </p>
 
             {/* Neumorphic Stats Dashboard Row */}
-            <div className="grid grid-cols-3 gap-3 w-full max-w-lg my-2">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 w-full max-w-lg my-2">
               {/* Stat 1 */}
-              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
-                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
-                  <Code2 className="w-4 h-4 stroke-[2.5px]" />
+              <div className="neumorphism-glass p-2 sm:p-3.5 rounded-2xl flex items-center gap-1.5 sm:gap-3.5">
+                <div className="p-1.5 sm:p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
                   <HeroCounter value={10} suffix="+" />
-                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                  <span className="text-[6.5px] sm:text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     Projects<br />Completed
                   </span>
                 </div>
               </div>
 
               {/* Stat 2 */}
-              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
-                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
-                  <GitFork className="w-4 h-4 stroke-[2.5px]" />
+              <div className="neumorphism-glass p-2 sm:p-3.5 rounded-2xl flex items-center gap-1.5 sm:gap-3.5">
+                <div className="p-1.5 sm:p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <GitFork className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
                   <HeroCounter value={8} suffix="+" />
-                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                  <span className="text-[6.5px] sm:text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     GitHub<br />Repos
                   </span>
                 </div>
               </div>
 
               {/* Stat 3 */}
-              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
-                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
-                  <GitCommit className="w-4 h-4 stroke-[2.5px]" />
+              <div className="neumorphism-glass p-2 sm:p-3.5 rounded-2xl flex items-center gap-1.5 sm:gap-3.5">
+                <div className="p-1.5 sm:p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <GitCommit className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5px]" />
                 </div>
                 <div className="flex flex-col">
                   <HeroCounter value={70} suffix="+" />
-                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                  <span className="text-[6.5px] sm:text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
                     Commits<br />This Year
                   </span>
                 </div>
@@ -318,7 +318,7 @@ export default function Hero() {
                   }}
                   animate={motionProps.animate}
                   transition={motionProps.transition}
-                  className="badge-glass px-4 py-2 rounded-2xl flex items-center gap-2.5 text-[10px] font-bold text-dolphin hover:border-amethyst/50 transition-colors pointer-events-auto"
+                  className="badge-glass px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl flex items-center gap-1.5 sm:gap-2.5 text-[8px] sm:text-[10px] font-bold text-dolphin hover:border-amethyst/50 transition-colors pointer-events-auto"
                 >
                   {badge.icon}
                   <span>{badge.name}</span>

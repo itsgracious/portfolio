@@ -185,12 +185,12 @@ export default function Experience() {
                       </span>
                       
                       {/* Sub-details row */}
-                      <div className="hidden sm:flex items-center gap-4 text-[10px] font-bold text-dolphin/40 uppercase tracking-wider mt-2">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] sm:text-[10px] font-bold text-dolphin/40 uppercase tracking-wider mt-2">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-3.5 h-3.5 stroke-[2.5px]" />
                           <span>June 2025</span>
                         </div>
-                        <span>|</span>
+                        <span className="hidden sm:inline">|</span>
                         <div className="flex items-center gap-1">
                           <MapPin className="w-3.5 h-3.5 stroke-[2.5px]" />
                           <span>Kochi, Kerala, India</span>
@@ -373,9 +373,15 @@ export default function Experience() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="p-6 rounded-[28px] border-2 border-dashed border-amethyst/20 bg-amethyst-light/5 hover:bg-amethyst-light/10 transition-colors duration-300 flex flex-col md:flex-row justify-between items-center gap-6 cursor-none"
+              className="p-6 rounded-[28px] border-2 border-dashed border-amethyst/20 bg-amethyst-light/5 hover:bg-amethyst-light/10 transition-colors duration-300 flex flex-col justify-between items-stretch gap-6 cursor-none"
               data-cursor="GO"
             >
+              {/* Mobile Date Header (visible on mobile only) */}
+              <div className="flex md:hidden items-center gap-1.5 text-xs font-bold text-dolphin/60 mb-1">
+                <Rocket className="w-3.5 h-3.5 text-amethyst" />
+                <span>Future Opportunities</span>
+              </div>
+
               <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
                 <div className="w-12 h-12 rounded-full bg-amethyst-light text-amethyst flex items-center justify-center shrink-0 shadow-sm animate-pulse">
                   <Rocket className="w-5 h-5 stroke-[2.5px]" />

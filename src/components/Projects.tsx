@@ -318,7 +318,7 @@ function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
       >
         <div
           onClick={handleCardClick}
-          className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden glassmorphism border border-dolphin/10 hover:border-amethyst/30 shadow-[0_8px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_20px_50px_rgba(171,146,191,0.1)] transition-all duration-500 cursor-none group flex items-center justify-center"
+          className="relative w-full h-[320px] sm:h-auto sm:aspect-[4/3] rounded-3xl overflow-hidden glassmorphism border border-dolphin/10 hover:border-amethyst/30 shadow-[0_8px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_20px_50px_rgba(171,146,191,0.1)] transition-all duration-500 cursor-none group flex items-center justify-center"
           data-cursor={images ? "EXPAND" : "BLUEPRINT"}
         >
           {images && images.length > 0 ? (
@@ -731,7 +731,7 @@ function DetailModal({ project, onClose }: ModalProps) {
         animate={{ y: 0, scale: 1 }}
         exit={{ y: 50, scale: 0.95 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-2xl bg-linen border border-dolphin/20 p-8 md:p-12 rounded-[32px] shadow-2xl flex flex-col gap-6"
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-linen border border-dolphin/20 p-6 md:p-12 rounded-[32px] shadow-2xl flex flex-col gap-6"
       >
         {/* Close Button */}
         <button
