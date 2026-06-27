@@ -179,7 +179,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: 8 }}
                     animate={theme === "light" ? { opacity: 0.9, x: 0 } : { opacity: 0, x: 8 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute right-1 top-1 sm:right-1.5 sm:top-1.5 text-white pointer-events-none"
+                    className="absolute right-1 top-1 sm:right-1.5 sm:top-1.5 text-white pointer-events-none hidden sm:block"
                   >
                     <svg className="w-4 h-3.5 sm:w-6 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
@@ -191,7 +191,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={theme === "dark" ? { opacity: 0.8, x: 0 } : { opacity: 0, x: -8 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-1.5 top-1.5 sm:left-2 sm:top-2 flex items-center gap-1 text-white pointer-events-none"
+                    className="absolute left-1.5 top-1.5 sm:left-2 sm:top-2 flex items-center gap-1 text-white pointer-events-none hidden sm:flex"
                   >
                     <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white rounded-full" />
                     <div className="w-px h-px sm:w-0.5 sm:h-0.5 bg-white/70 rounded-full mt-0.5" />
