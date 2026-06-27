@@ -6,6 +6,7 @@
   --foreground: #655A7C;
   --linen: #FBEAD7;
   --dolphin: #655A7C;
+  --dolphin-grid: rgba(101, 90, 124, 0.02);
   --amethyst: #B8A1D9;
   --amethyst-light: rgba(184, 161, 217, 0.15);
   --amethyst-medium: rgba(184, 161, 217, 0.4);
@@ -14,14 +15,25 @@
   --font-inter: 'Inter', sans-serif;
 }
 
+.dark {
+  --background: #191621;
+  --foreground: #EBDBE8;
+  --linen: #191621;
+  --dolphin: #EBDBE8;
+  --dolphin-grid: rgba(235, 219, 232, 0.02);
+  --amethyst: #C4B0E0;
+  --amethyst-light: rgba(196, 176, 224, 0.15);
+  --amethyst-medium: rgba(196, 176, 224, 0.4);
+}
+
 @theme {
-  --color-background: #FBEAD7;
-  --color-foreground: #655A7C;
-  --color-linen: #FBEAD7;
-  --color-dolphin: #655A7C;
-  --color-amethyst: #B8A1D9;
-  --color-amethyst-light: rgba(184, 161, 217, 0.15);
-  --color-amethyst-medium: rgba(184, 161, 217, 0.4);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-linen: var(--linen);
+  --color-dolphin: var(--dolphin);
+  --color-amethyst: var(--amethyst);
+  --color-amethyst-light: var(--amethyst-light);
+  --color-amethyst-medium: var(--amethyst-medium);
 
   --font-syne: var(--font-syne);
   --font-inter: var(--font-inter);
@@ -34,11 +46,12 @@
 }
 
 body {
-  background-color: #FBEAD7 !important;
-  color: #655A7C !important;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Ultra-fine Film Grain / Paper Texture Overlay */
@@ -54,8 +67,8 @@ body {
 /* Technical Grid Pattern Background */
 .tech-grid {
   background-image: 
-    linear-gradient(rgba(101, 90, 124, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(101, 90, 124, 0.02) 1px, transparent 1px);
+    linear-gradient(var(--dolphin-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--dolphin-grid) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -86,7 +99,7 @@ html.lenis body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FBEAD7;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--amethyst-medium);
@@ -157,4 +170,64 @@ html.lenis body {
   background-image: radial-gradient(var(--dolphin) 1px, transparent 1px);
   background-size: 32px 32px;
   opacity: 0.05;
+}
+
+/* ==========================================
+   Dark Theme Specific Overrides
+   ========================================== */
+
+.dark .glassmorphism {
+  background: rgba(25, 22, 33, 0.7);
+  border: 1px solid rgba(196, 176, 224, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dark .badge-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.15), 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .neumorphism-glass {
+  background: rgba(25, 22, 33, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    4px 4px 16px rgba(0, 0, 0, 0.35),
+    -4px -4px 16px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Override utility card colors dynamically in dark mode */
+.dark .bg-white\/40 {
+  background-color: rgba(25, 22, 33, 0.45) !important;
+}
+
+.dark .hover\:bg-white\/60:hover {
+  background-color: rgba(25, 22, 33, 0.6) !important;
+}
+
+.dark .bg-white {
+  background-color: #252030 !important;
+}
+
+.dark .border-dolphin\/10 {
+  border-color: rgba(196, 176, 224, 0.1) !important;
+}
+
+.dark .border-dolphin\/5 {
+  border-color: rgba(196, 176, 224, 0.05) !important;
+}
+
+.dark .bg-dolphin\/5 {
+  background-color: rgba(196, 176, 224, 0.08) !important;
+}
+
+.dark .hover\:bg-amethyst\/10:hover {
+  background-color: rgba(196, 176, 224, 0.15) !important;
+}
+
+.dark .bg-linen {
+  background-color: var(--background) !important;
 }

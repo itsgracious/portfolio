@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code, Layers, Cpu, Database, Wrench } from "lucide-react";
+import { Code, Layers, Cpu, Database, Wrench, Compass } from "lucide-react";
 
 interface SkillCategory {
   title: string;
@@ -14,7 +14,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
     icon: <Code className="w-5 h-5" />,
-    skills: ["Python", "Java", "PHP", "C / C++", "SQL", "JavaScript"],
+    skills: ["Python", "Java", "PHP", "C / C++", "SQL", "JavaScript","Dart", "Bash", "HTML / CSS"],
   },
   {
     title: "Frameworks & Libraries",
@@ -24,7 +24,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Artificial Intelligence",
     icon: <Cpu className="w-5 h-5" />,
-    skills: ["Machine Learning", "Computer Vision", "scikit-learn", "YOLOv8", "TensorFlow Lite Micro", "Gemini API (RAG)"],
+    skills: ["On-device inference/edge ML", "Hugging Face/Transformers", "LangChain", "YOLOv8", "TensorFlow Lite Micro", "RAG"],
   },
   {
     title: "Databases & Systems",
@@ -35,6 +35,11 @@ const skillCategories: SkillCategory[] = [
     title: "Tools & Hardware",
     icon: <Wrench className="w-5 h-5" />,
     skills: ["Git / GitHub", "VS Code", "Arduino", "Raspberry Pi", "ESP32-S3", "LTE Alerts & Sensors"],
+  },
+  {
+    title: "Currently Exploring",
+    icon: <Compass className="w-5 h-5" />,
+    skills: ["Multi-Agent AI Systems", "Edge AI & TinyML", "MCP", "LLM Applications", "RAG Systems", "Advanced Flutter Animations"],
   },
 ];
 
@@ -100,7 +105,7 @@ export default function Skills() {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="relative p-8 rounded-3xl bg-linen border border-dolphin/10 hover:border-amethyst/30 transition-all duration-500 shadow-[0_4px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_12px_40px_rgba(171,146,191,0.08)] group hover:-translate-y-1.5 cursor-none"
+              className="relative p-8 rounded-3xl bg-white/40 border border-dolphin/10 hover:border-amethyst/30 transition-all duration-500 shadow-[0_4px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_12px_40px_rgba(171,146,191,0.08)] group hover:-translate-y-1.5 cursor-none"
               data-cursor="EXPAND"
             >
               {/* Inner card light glow */}
@@ -108,7 +113,7 @@ export default function Skills() {
 
               {/* Icon & Title */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-amethyst-light text-amethyst rounded-2xl group-hover:bg-amethyst group-hover:text-linen transition-colors duration-500">
+                <div className="p-3 bg-amethyst-light text-amethyst rounded-2xl">
                   {category.icon}
                 </div>
                 <h3 className="text-lg font-bold font-syne text-dolphin">

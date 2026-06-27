@@ -3,6 +3,35 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { GraduationCap, MapPin, Briefcase, Heart } from "lucide-react";
+
+// Info cards for About section (mockup-matched)
+const infoCards = [
+  {
+    category: "EDUCATION",
+    title: "B.Tech Computer Science (AI)",
+    subtitle: "Muthoot Institute of Technology and Science (MITS)",
+    icon: <GraduationCap className="w-5 h-5" />,
+  },
+  {
+    category: "BASED IN",
+    title: "Kochi, Kerala, India",
+    subtitle: "Local roots, global mindset.",
+    icon: <MapPin className="w-5 h-5" />,
+  },
+  {
+    category: "CURRENTLY",
+    title: "Open for Internships",
+    subtitle: "Actively looking for opportunities to learn and contribute.",
+    icon: <Briefcase className="w-5 h-5" />,
+  },
+  {
+    category: "BEYOND CODE",
+    title: "Curious • Driven • Explorer",
+    subtitle: "Movie, music, rides, football and late night walks.",
+    icon: <Heart className="w-5 h-5" />,
+  },
+];
 
 interface CounterProps {
   value: number;
@@ -113,7 +142,7 @@ export default function About() {
         </motion.div>
 
         {/* Two Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Biography Column */}
           <motion.div
             initial="hidden"
@@ -122,7 +151,7 @@ export default function About() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.15 } },
             }}
-            className="col-span-1 md:col-span-7 flex flex-col gap-6"
+            className="col-span-1 lg:col-span-7 flex flex-col gap-6"
           >
             <motion.p variants={textVariants} className="text-xl sm:text-2xl font-light text-dolphin/90 leading-relaxed">
               Computer Science (AI) undergraduate passionate about building intelligent software that creates real-world impact.
@@ -133,14 +162,12 @@ export default function About() {
             </motion.p>
 
             <motion.p variants={textVariants} className="text-sm sm:text-base text-dolphin/70 leading-relaxed">
-             My experience spans computer vision, machine learning, native Android and Flutter development, backend systems, and full-stack web applications. I enjoy building software that combines intelligent engineering with intuitive design to deliver meaningful user experiences.
+             My experience spans computer vision, machine learning, native Android and Flutter development, backend systems, and full-stack web applications — and I care just as much about thoughtful design and usability as I do about the engineering underneath it.
             </motion.p>
 
             <motion.p variants={textVariants} className="text-sm sm:text-base text-dolphin/70 leading-relaxed">
-            Beyond coding, I'm constantly exploring new technologies, participating in hackathons, and refining my skills through personal projects. My goal is to build software that is intelligent, scalable, and delivers meaningful value.
+            Beyond coding, I'm constantly exploring new technologies, participating in hackathons, and refining my skills through personal projects. My goal is to build software that's robust, scalable, and delivers real value.
             </motion.p>
-
-
           </motion.div>
 
           {/* Portrait/Card Column */}
@@ -148,7 +175,7 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="col-span-1 md:col-span-5 flex justify-center"
+            className="col-span-1 lg:col-span-5 flex justify-center"
           >
             <div
               ref={cardRef}
@@ -193,6 +220,48 @@ export default function About() {
             </div>
           </motion.div>
         </div>
+
+        {/* Info Cards Horizontal Row */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 w-full"
+        >
+          {infoCards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                },
+              }}
+              className="p-5 rounded-[24px] bg-white/40 border border-dolphin/10 shadow-[0_8px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_12px_40px_rgba(171,146,191,0.06)] hover:bg-white/60 transition-all duration-300 flex items-center gap-4 cursor-none w-full"
+              data-cursor="CARD"
+            >
+              <div className="w-12 h-12 rounded-full bg-amethyst-light text-amethyst flex items-center justify-center shrink-0">
+                {card.icon}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] uppercase tracking-wider text-amethyst font-bold mb-0.5">
+                  {card.category}
+                </span>
+                <h4 className="text-sm font-bold text-dolphin font-syne leading-snug">
+                  {card.title}
+                </h4>
+                <p className="text-xs text-dolphin/60 font-light mt-0.5 leading-normal">
+                  {card.subtitle}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

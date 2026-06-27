@@ -36,6 +36,11 @@ const educationData: EducationItem[] = [
 
 const certificationsData: CertificationItem[] = [
   {
+    title: "GenAI in Action: Develop, Fine-Tune, and Deploy AI Solutions",
+    issuer: "iSkew Learning",
+    year: "2026",
+  },
+  {
     title: "AI: Constraint Satisfaction",
     issuer: "NPTEL",
     year: "2026",

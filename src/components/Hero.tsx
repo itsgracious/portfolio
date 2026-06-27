@@ -194,7 +194,7 @@ export default function Hero() {
 
             {/* Description Text */}
             <p className="text-sm sm:text-base text-dolphin/70 leading-relaxed font-light max-w-lg mt-2">
-              From intelligent AI systems to polished Flutter applications, I build software that solves real-world problems.
+              AI that thinks, apps that ship — I build software that solves real-world problems
             </p>
 
             {/* Neumorphic Stats Dashboard Row */}
