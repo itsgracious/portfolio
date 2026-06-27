@@ -40,7 +40,7 @@ const skillCategories: SkillCategory[] = [
 
 export default function Skills() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   const containerVariants = {
     hidden: {},

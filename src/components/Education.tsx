@@ -64,7 +64,7 @@ const certificationsData: CertificationItem[] = [
 
 export default function Education() {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" });
 
   const containerVariants = {
     hidden: {},
@@ -102,7 +102,7 @@ export default function Education() {
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6 }}
               className="mb-12"
             >
@@ -160,7 +160,7 @@ export default function Education() {
             {/* Club Leadership Sub-Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
               className="mt-6 p-8 rounded-3xl bg-linen border border-dolphin/10 hover:border-amethyst/30 transition-all duration-500 shadow-[0_4px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_12px_40px_rgba(171,146,191,0.06)] cursor-none"
               data-cursor="LEAD"
@@ -192,7 +192,7 @@ export default function Education() {
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mb-12"
             >

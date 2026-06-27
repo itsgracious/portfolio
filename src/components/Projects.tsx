@@ -154,7 +154,7 @@ interface CardProps {
 
 function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
     <div
@@ -164,7 +164,7 @@ function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
       {/* Visual Mockup Column */}
       <motion.div
         initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -40 : 40 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`col-span-1 lg:col-span-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}
       >
@@ -183,7 +183,7 @@ function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
       {/* Content Column */}
       <motion.div
         initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? 40 : -40 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         className={`col-span-1 lg:col-span-6 flex flex-col gap-4 ${isEven ? "lg:order-2" : "lg:order-1"}`}
       >

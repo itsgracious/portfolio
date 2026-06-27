@@ -117,8 +117,8 @@ export default function Hero() {
     transition: {
       duration: 4 + idx * 0.35 + (idx % 3) * 0.15,
       repeat: Infinity,
-      repeatType: "mirror",
-      ease: [0.22, 1, 0.36, 1],
+      repeatType: "mirror" as const,
+      ease: "easeInOut" as const,
       delay: badges[idx].delay
     }
   });

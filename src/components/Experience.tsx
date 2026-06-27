@@ -28,7 +28,7 @@ const experienceData: ExperienceItem[] = [
 
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sectionInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const sectionInView = useInView(containerRef, { once: false, margin: "-100px" });
 
   // Scroll progress for vertical line animation
   const { scrollYProgress } = useScroll({
@@ -88,7 +88,7 @@ export default function Experience() {
 // Single Timeline Item
 function TimelineItem({ item, index }: { item: ExperienceItem; index: number }) {
   const itemRef = useRef(null);
-  const isInView = useInView(itemRef, { once: true, margin: "-100px" });
+  const isInView = useInView(itemRef, { once: false, margin: "-100px" });
 
   return (
     <div ref={itemRef} className="relative">
@@ -96,7 +96,7 @@ function TimelineItem({ item, index }: { item: ExperienceItem; index: number }) 
       <div className="absolute -left-[37px] md:-left-[45px] top-1.5 z-10 w-6 h-6 rounded-full bg-linen border-2 border-amethyst flex items-center justify-center">
         <motion.div
           initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : {}}
+          animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
           className="w-2.5 h-2.5 rounded-full bg-amethyst"
         />
@@ -105,7 +105,7 @@ function TimelineItem({ item, index }: { item: ExperienceItem; index: number }) 
       {/* Card Body */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         className="p-8 rounded-3xl bg-linen border border-dolphin/10 hover:border-amethyst/30 transition-all duration-500 shadow-[0_4px_30px_rgba(101,90,124,0.02)] hover:shadow-[0_12px_40px_rgba(171,146,191,0.06)] cursor-none"
         data-cursor="INTERN"

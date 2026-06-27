@@ -13,7 +13,7 @@ interface CounterProps {
 function Counter({ value, suffix = "", duration = 1200 }: CounterProps) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   useEffect(() => {
     if (isInView) {
@@ -53,7 +53,7 @@ function Counter({ value, suffix = "", duration = 1200 }: CounterProps) {
 
 export default function About() {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const isInView = useInView(containerRef, { once: false, margin: "-100px" });
 
   // Mouse tilt effect for profile card
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -185,7 +185,7 @@ export default function About() {
                       Kochi, Kerala
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-amethyst tracking-wider uppercase bg-amethyst-light px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] font-bold text-grey tracking-wider uppercase bg-amethyst px-2.5 py-1 rounded-full">
                     AI Student
                   </span>
                 </div>
