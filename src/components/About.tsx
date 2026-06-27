@@ -125,15 +125,19 @@ export default function About() {
             className="col-span-1 md:col-span-7 flex flex-col gap-6"
           >
             <motion.p variants={textVariants} className="text-xl sm:text-2xl font-light text-dolphin/90 leading-relaxed">
-              I am an **Artificial Intelligence undergraduate** with hands-on experience in building systems that span AI, IoT, and software engineering.
+              Computer Science (AI) undergraduate passionate about building intelligent software that creates real-world impact.
             </motion.p>
             
             <motion.p variants={textVariants} className="text-sm sm:text-base text-dolphin/70 leading-relaxed">
-              Currently pursuing my B.Tech in Computer Science and Artificial Intelligence at Muthoot Institute of Technology and Science (MITS), I specialize in transforming conceptual ideas into fully functioning digital products. My technical skill set covers everything from designing acoustic threat-detection CNN pipelines to architecting multi-agent search nodes and local note cleanup algorithms.
+              I'm currently pursuing a B.Tech in Computer Science with Artificial Intelligence at Muthoot Institute of Technology and Science (MITS). I enjoy turning ideas into production-ready software by combining AI, Flutter, and modern software engineering.
             </motion.p>
 
             <motion.p variants={textVariants} className="text-sm sm:text-base text-dolphin/70 leading-relaxed">
-              With a growth-oriented mindset, I am driven by the challenges of edge-computing anomalies, mobile application optimization, and network security modules. I aim to write highly refined, production-ready code that solves tangible, real-world problems.
+             My experience spans computer vision, machine learning, native Android and Flutter development, backend systems, and full-stack web applications. I enjoy building software that combines intelligent engineering with intuitive design to deliver meaningful user experiences.
+            </motion.p>
+
+            <motion.p variants={textVariants} className="text-sm sm:text-base text-dolphin/70 leading-relaxed">
+            Beyond coding, I'm constantly exploring new technologies, participating in hackathons, and refining my skills through personal projects. My goal is to build software that is intelligent, scalable, and delivers meaningful value.
             </motion.p>
 
 
@@ -160,28 +164,28 @@ export default function About() {
               {/* Nested image card container with parallax depth */}
               <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-linen border border-dolphin/5">
                 <Image
-                  src="/profile_portrait.jpg"
+                  src="/profile_portrait.png"
                   alt="Gracious Joseph Ben portrait"
                   fill
+                  unoptimized
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   priority
-                  sizes="(max-width: 768px) 100vw, 340px"
                 />
                 
                 {/* Visual Glass overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dolphin/20 via-transparent to-transparent opacity-80 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dolphin/20 via-transparent to-transparent opacity-100 pointer-events-none" />
                 
                 {/* Floating overlay border info */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl glassmorphism pointer-events-none flex justify-between items-center">
                   <div className="flex flex-col gap-0.5">
                     <span className="text-[11px] font-bold text-dolphin font-syne uppercase">
-                      G. J. Ben
+                      Gracious Ben
                     </span>
-                    <span className="text-[9px] text-dolphin/60">
+                    <span className="text-[9px] font-bold text-dolphin/60">
                       Kochi, Kerala
                     </span>
                   </div>
-                  <span className="text-[10px] font-semibold text-amethyst tracking-wider uppercase bg-amethyst-light px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] font-bold text-amethyst tracking-wider uppercase bg-amethyst-light px-2.5 py-1 rounded-full">
                     AI Student
                   </span>
                 </div>

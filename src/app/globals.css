@@ -2,26 +2,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FDF1E2;
+  --background: #FBEAD7;
   --foreground: #655A7C;
-  --linen: #FDF1E2;
+  --linen: #FBEAD7;
   --dolphin: #655A7C;
-  --amethyst: #AB92BF;
-  --amethyst-light: rgba(171, 146, 191, 0.15);
-  --amethyst-medium: rgba(171, 146, 191, 0.4);
+  --amethyst: #B8A1D9;
+  --amethyst-light: rgba(184, 161, 217, 0.15);
+  --amethyst-medium: rgba(184, 161, 217, 0.4);
   
   --font-syne: 'Syne', sans-serif;
   --font-inter: 'Inter', sans-serif;
 }
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-linen: var(--linen);
-  --color-dolphin: var(--dolphin);
-  --color-amethyst: var(--amethyst);
-  --color-amethyst-light: var(--amethyst-light);
-  --color-amethyst-medium: var(--amethyst-medium);
+  --color-background: #FBEAD7;
+  --color-foreground: #655A7C;
+  --color-linen: #FBEAD7;
+  --color-dolphin: #655A7C;
+  --color-amethyst: #B8A1D9;
+  --color-amethyst-light: rgba(184, 161, 217, 0.15);
+  --color-amethyst-medium: rgba(184, 161, 217, 0.4);
 
   --font-syne: var(--font-syne);
   --font-inter: var(--font-inter);
@@ -34,11 +34,29 @@
 }
 
 body {
-  background-color: var(--linen);
-  color: var(--foreground);
+  background-color: #FBEAD7 !important;
+  color: #655A7C !important;
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  position: relative;
+}
+
+/* Ultra-fine Film Grain / Paper Texture Overlay */
+.paper-texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Technical Grid Pattern Background */
+.tech-grid {
+  background-image: 
+    linear-gradient(rgba(101, 90, 124, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101, 90, 124, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 /* Lenis smooth scrolling support */
@@ -68,7 +86,7 @@ html.lenis body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--linen);
+  background: #FBEAD7;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--amethyst-medium);
@@ -97,17 +115,41 @@ html.lenis body {
 .custom-cursor.hovered {
   width: 50px;
   height: 50px;
-  background-color: rgba(171, 146, 191, 0.3);
+  background-color: rgba(184, 161, 217, 0.2);
   mix-blend-mode: normal;
   border: 1px solid var(--amethyst);
 }
 
-/* Glassmorphism utility */
+/* Enhanced Glassmorphism utility */
 .glassmorphism {
-  background: rgba(253, 241, 226, 0.7);
+  background: rgba(251, 234, 215, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 161, 217, 0.25);
+  box-shadow: 0 10px 40px rgba(101, 90, 124, 0.04);
+}
+
+/* Frosted glass for technology badges */
+.badge-glass {
+  background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(101, 90, 124, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 4px 20px rgba(101, 90, 124, 0.03), 
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Neumorphic Glassmorphic mixed card styling */
+.neumorphism-glass {
+  background: rgba(251, 234, 215, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    4px 4px 16px rgba(101, 90, 124, 0.05),
+    -4px -4px 16px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 /* Parallax dots background pattern */

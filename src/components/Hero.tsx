@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowDown, Mail, Download, ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Download, ArrowRight, Code2, GitFork, GitCommit } from "lucide-react";
 import Image from "next/image";
 import Magnetic from "./Magnetic";
 
-// Local Counter component for page load animation
+// Local Counter component for page load count-up
 function HeroCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   
@@ -33,169 +33,222 @@ function HeroCounter({ value, suffix = "" }: { value: number; suffix?: string })
   }, [value]);
 
   return (
-    <span className="font-syne font-bold text-3xl sm:text-4xl md:text-5xl text-amethyst tracking-tight leading-none">
+    <span className="font-syne font-bold text-lg sm:text-xl text-dolphin tracking-tight leading-none">
       {count}
       {suffix}
     </span>
   );
 }
 
+// Reusable custom SVG icons for brand badges (exact logos)
+const TechIcons = {
+  python: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.02 1.83c1.07 0 1.94.87 1.94 1.94s-.87 1.94-1.94 1.94-1.94-.87-1.94-1.94.87-1.94 1.94-1.94zM10.22 17h-2.1v-6.3h2.1V17zm.92-7.46c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm4.86 7.46h-2.1V11.2c0-1.25-.83-1.63-1.42-1.63-.77 0-1.46.59-1.46 1.76V17H8.92V9.7h2.1v.96c.4-.64 1.15-1.16 2.27-1.16 1.63 0 2.71 1.07 2.71 2.9v4.6h.02z" fill="#3776AB" />
+      <path d="M12.16 14.5c.34-.14.73-.22 1.14-.22 1.48 0 2.7 1.22 2.7 2.7v2.7h-2.7v-2.7c0-.5-.4-.9-.9-.9s-.9.4-.9.9v2.7h-2.7V17c0-1.48 1.22-2.7 2.7-2.7.27 0 .53.04.76.12z" fill="#FFE873" />
+    </svg>
+  ),
+  flutter: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12.16 14.5c.34-.14.73-.22 1.14-.22 1.48 0 2.7 1.22 2.7 2.7v2.7h-2.7v-2.7c0-.5-.4-.9-.9-.9s-.9.4-.9.9v2.7h-2.7V17c0-1.48 1.22-2.7 2.7-2.7.27 0 .53.04.76.12z" fill="#02569B" stroke="#02569B" />
+      <path d="M22 6.5L14 14.5L10 10.5L18 2.5H22Z" fill="#0175C2" />
+      <path d="M14 14.5L22 22.5H18L10 14.5L14 10.5Z" fill="#13B9FD" />
+    </svg>
+  ),
+  tensorflow: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.25L3.75 7.02v9.54L12 21.33l8.25-4.77V7.02L12 2.25zm-.75 16.48v-6.73H7.5v-1.5h3.75V5.25h1.5v5.25h3.75v1.5h-3.75v6.73h-1.5z" fill="#FF6F00" />
+    </svg>
+  ),
+  opencv: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <circle cx="12" cy="7" r="4" stroke="#FF2C2C" />
+      <circle cx="7" cy="15" r="4" stroke="#00E600" />
+      <circle cx="17" cy="15" r="4" stroke="#0000FF" />
+    </svg>
+  ),
+  yolov8: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3a9 9 0 0 1 0 18" strokeDasharray="3 3" />
+      <circle cx="12" cy="12" r="3" fill="currentColor" />
+    </svg>
+  ),
+  react: (
+    <svg className="w-4 h-4 animate-[spin_10s_linear_infinite]" viewBox="0 0 24 24" fill="none" stroke="#00d8ff" strokeWidth="2">
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(30 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(90 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(150 12 12)" />
+      <circle cx="12" cy="12" r="1.5" fill="#00d8ff" />
+    </svg>
+  ),
+  firebase: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3.89 15.55L7.96 2.34a.43.43 0 0 1 .82 0l1.7 5.5z" fill="#FFA000" />
+      <path d="M12.1 7.84l-1.62-3.15a.43.43 0 0 0-.76 0L3.89 15.55l8.21-7.71z" fill="#F57C00" />
+      <path d="M20.11 15.55l-4-8-4 8 4 4.5z" fill="#FFCA28" />
+    </svg>
+  )
+};
+
 export default function Hero() {
-  // Parallax physics setup
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 50, stiffness: 200, mass: 0.5 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
-
-  // Map mouse positions to parallax offset values
-  const bgX = useTransform(springX, (val) => val * 0.012);
-  const bgY = useTransform(springY, (val) => val * 0.012);
-  const blobX = useTransform(springX, (val) => val * -0.03);
-  const blobY = useTransform(springY, (val) => val * -0.03);
-  const cardTiltX = useTransform(springY, (val) => val * 0.02);
-  const cardTiltY = useTransform(springX, (val) => val * -0.02);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    mouseX.set(clientX - width / 2);
-    mouseY.set(clientY - height / 2);
-  };
-
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Badge layout coordinates surrounding the portrait (mockup-matched)
+  const badges = [
+    { name: "TensorFlow", icon: TechIcons.tensorflow, top: "62%", left: "15%", delay: 0 },
+    { name: "OpenCV", icon: TechIcons.opencv, top: "39%", left: "5%", delay: 0.4 },
+    { name: "Flutter", icon: TechIcons.flutter, top: "7%", left: "1%", delay: 0.8 },
+    { name: "Python", icon: TechIcons.python, top: "12%", right: "8%", delay: 0.2 },
+    { name: "YOLOv8", icon: TechIcons.yolov8, top: "35%", right: "5%", delay: 0.6 },
+    { name: "React", icon: TechIcons.react, top: "60%", right: "8%", delay: 1.0 },
+    { name: "Firebase", icon: TechIcons.firebase, top: "72%", right: "32%", delay: 0.5 }
+  ];
+
+  const badgeMotion = (idx: number) => ({
+    animate: {
+      y: [0, -10 - (idx % 3) * 3, 0],
+      x: [0, idx % 2 === 0 ? 5 : -5, 0],
+      opacity: [1, 0.93, 1]
+    },
+    transition: {
+      duration: 4 + idx * 0.35 + (idx % 3) * 0.15,
+      repeat: Infinity,
+      repeatType: "mirror",
+      ease: [0.22, 1, 0.36, 1],
+      delay: badges[idx].delay
+    }
+  });
+
   return (
     <section
       id="home"
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen w-full flex flex-col justify-between p-6 md:p-12 overflow-hidden bg-linen select-none pt-24"
+      className="relative min-h-screen w-full flex flex-col justify-between p-6 md:p-12 overflow-hidden bg-linen select-none pt-24 tech-grid"
     >
-      {/* Parallax Floating Ambient Blobs */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Dot pattern background */}
-        <motion.div
-          style={{ x: bgX, y: bgY }}
-          className="absolute inset-0 dot-matrix"
-        />
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Lavender glow behind portrait (Right) */}
+        <div className="absolute -right-10 top-1/4 w-[45vw] h-[45vw] bg-amethyst-light rounded-full blur-[140px] opacity-90" />
+        
+        {/* Soft cream/lavender glow behind headings (Left) */}
+        <div className="absolute left-1/12 top-1/3 w-[35vw] h-[35vw] bg-amethyst/10 rounded-full blur-[130px] opacity-40" />
 
-        {/* Soft luxury blurred shape */}
-        <motion.div
-          style={{ x: blobX, y: blobY }}
-          className="absolute top-1/4 left-1/3 w-[40vw] h-[40vw] rounded-full bg-amethyst-light blur-[120px] opacity-70"
-        />
+        {/* Orbit curves behind portrait */}
+        <div className="absolute right-1/8 top-1/4 w-[380px] h-[380px] border border-amethyst/10 rounded-full flex items-center justify-center animate-[spin_100s_linear_infinite]">
+          <div className="absolute top-0 w-1.5 h-1.5 bg-amethyst/30 rounded-full" />
+        </div>
+        <div className="absolute right-[calc(1/8+40px)] top-[calc(1/4+40px)] w-[300px] h-[300px] border border-dashed border-amethyst/15 rounded-full" />
+
+        {/* Floating crosses and geometric shapes */}
+        <div className="absolute left-1/4 top-1/5 text-dolphin/10 text-xl font-light font-sans">+</div>
+        <div className="absolute left-1/3 bottom-1/4 text-dolphin/10 text-xl font-light font-sans">+</div>
+        <div className="absolute right-1/3 top-1/3 text-dolphin/15 text-sm font-light font-sans">•</div>
+        <div className="absolute left-1/12 bottom-1/5 w-2 h-2 rounded-full border border-amethyst/20" />
       </div>
 
-      {/* Top Header Row */}
+      {/* Top Navbar Space Filler */}
       <div className="w-full flex justify-between items-center z-10">
-        <span className="text-[10px] uppercase tracking-[0.25em] text-dolphin/40 font-semibold">
-          AI Researcher & Software Engineer
-        </span>
-        <span className="text-[10px] uppercase tracking-[0.25em] text-dolphin/40 font-semibold">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 bg-amethyst rounded-full" />
+          <span className="text-[9px] uppercase tracking-[0.25em] text-dolphin/50 font-bold font-syne">
+            AI Engineer & Full Stack Developer
+          </span>
+        </div>
+        <span className="text-[9px] uppercase tracking-[0.25em] text-dolphin/50 font-bold font-syne">
           Kochi, Kerala, India
         </span>
       </div>
 
-      {/* Main Grid Content Layout */}
-      <div className="relative z-10 flex flex-col justify-center flex-grow max-w-6xl mx-auto w-full py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+      {/* Main Content Grid */}
+      <div className="relative z-10 flex flex-col justify-center flex-grow max-w-6xl mx-auto w-full py-8 md:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Image Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            style={{ rotateX: cardTiltX, rotateY: cardTiltY }}
-            className="col-span-1 md:col-span-5 flex justify-center md:justify-start"
-          >
-            <div
-              className="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[3/4] rounded-[32px] overflow-hidden bg-amethyst/5 border border-amethyst/10 p-3 shadow-2xl transition-all duration-200 cursor-none"
-              data-cursor="TILT"
-              style={{
-                boxShadow: "0 20px 45px rgba(101, 90, 124, 0.06)",
-              }}
-            >
-              {/* Inner frame */}
-              <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-linen border border-dolphin/5">
-                <Image
-                  src="/profile.jpg"
-                  alt="Gracious Joseph Ben"
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 340px"
-                />
-                
-                {/* Visual overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dolphin/30 via-transparent to-transparent opacity-80 pointer-events-none" />
-                
-                {/* Photo Tag Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center pointer-events-none">
-                  <span className="text-[9px] font-bold text-linen bg-dolphin/60 backdrop-blur-md px-2.5 py-1 rounded-full uppercase tracking-wider">
-                    AI & Mobile Dev
+          {/* Left Column: Heading, description, stats, buttons */}
+          <div className="col-span-1 lg:col-span-7 flex flex-col gap-6 md:gap-8 justify-center">
+            
+            {/* Availability Pill */}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-amethyst/30 bg-amethyst-light w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-amethyst animate-pulse" />
+              <span className="text-[9px] font-bold text-dolphin uppercase tracking-wider">
+                Available for Internship
+              </span>
+            </div>
+
+            {/* Main Header with lavender underline */}
+            <div className="flex flex-col gap-1">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-dolphin font-syne leading-[1.03]">
+                I build <br />
+                <span className="text-amethyst font-normal italic font-syne pr-2">intelligent</span> <br />
+                <div className="relative inline-block">
+                  AI systems
+                  {/* Handwritten lavender underline brush stroke */}
+                  <svg className="absolute -bottom-2.5 left-0 w-full h-3.5 text-amethyst/65" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M1 5 Q 50 9, 99 4.5" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </h1>
+            </div>
+
+            {/* Description Text */}
+            <p className="text-sm sm:text-base text-dolphin/70 leading-relaxed font-light max-w-lg mt-2">
+              From intelligent AI systems to polished Flutter applications, I build software that solves real-world problems.
+            </p>
+
+            {/* Neumorphic Stats Dashboard Row */}
+            <div className="grid grid-cols-3 gap-3 w-full max-w-lg my-2">
+              {/* Stat 1 */}
+              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
+                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <Code2 className="w-4 h-4 stroke-[2.5px]" />
+                </div>
+                <div className="flex flex-col">
+                  <HeroCounter value={12} suffix="+" />
+                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                    Projects<br />Completed
                   </span>
-                  <span className="text-[9px] font-bold text-linen bg-dolphin/60 backdrop-blur-md px-2.5 py-1 rounded-full uppercase tracking-wider">
-                    v.2026
+                </div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
+                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <GitFork className="w-4 h-4 stroke-[2.5px]" />
+                </div>
+                <div className="flex flex-col">
+                  <HeroCounter value={20} suffix="+" />
+                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                    GitHub<br />Repos
+                  </span>
+                </div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="neumorphism-glass p-3.5 rounded-2xl flex items-center gap-3.5">
+                <div className="p-2 bg-amethyst-light text-amethyst rounded-xl h-fit">
+                  <GitCommit className="w-4 h-4 stroke-[2.5px]" />
+                </div>
+                <div className="flex flex-col">
+                  <HeroCounter value={300} suffix="+" />
+                  <span className="text-[8px] uppercase tracking-wider text-dolphin/50 font-bold leading-none mt-1">
+                    Commits<br />This Year
                   </span>
                 </div>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right Column: Hero Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-            className="col-span-1 md:col-span-7 flex flex-col gap-6"
-          >
-            {/* Availability Pill */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[9px] font-semibold text-emerald-600 uppercase tracking-wider">
-                Available for work · India
-              </span>
-            </div>
-
-            {/* Intro */}
-            <span className="text-xs font-semibold text-dolphin/60 tracking-[0.15em] uppercase">
-              HI, I'M GRACIOUS –
-            </span>
-
-            {/* Main Header */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-dolphin font-syne leading-[1.05]">
-              I build <span className="text-amethyst font-normal italic font-syne">intelligent</span> <br /> AI systems
-            </h1>
-
-            {/* Subtitle / Description */}
-            <p className="text-sm sm:text-base text-dolphin/70 leading-relaxed font-light max-w-xl">
-              Python and Flutter on the back and front. I build edge-AI threat classifiers, multi-agent recommendation engines, and privacy-first note cleaners.
-            </p>
-
-            {/* Quote Block */}
-            <div className="border-l-2 border-amethyst/30 pl-4 py-1.5">
-              <p className="font-syne italic text-xs text-dolphin/80 leading-relaxed">
-                "Why first. Code second."
-              </p>
-              <p className="text-[9px] uppercase tracking-[0.15em] text-dolphin/40 font-bold mt-1">
-                — FIND THE ROOT, FIX WHAT ACTUALLY MOVES THE BUSINESS
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-3 items-center mt-2">
+            {/* CTAs and buttons */}
+            <div className="flex flex-wrap gap-4 items-center mt-2">
               <Magnetic>
                 <button
                   onClick={() => handleScrollTo("projects")}
                   data-cursor="GO"
-                  className="px-5 py-3 bg-dolphin text-linen rounded-full font-medium text-[10px] uppercase tracking-wider shadow-lg hover:shadow-dolphin/20 transition-all cursor-none"
+                  className="px-6 py-3.5 bg-amethyst text-linen rounded-full font-bold text-[10px] uppercase tracking-wider shadow-lg hover:shadow-amethyst/30 hover:-translate-y-0.5 transition-all cursor-none flex items-center gap-2"
                 >
                   See my work
+                  <ArrowRight className="w-3.5 h-3.5 stroke-[2.5px]" />
                 </button>
               </Magnetic>
 
@@ -203,7 +256,7 @@ export default function Hero() {
                 <button
                   onClick={() => handleScrollTo("contact")}
                   data-cursor="TALK"
-                  className="px-5 py-3 border border-dolphin/20 text-dolphin hover:bg-dolphin hover:text-linen rounded-full font-medium text-[10px] uppercase tracking-wider transition-all cursor-none"
+                  className="px-6 py-3.5 border border-dolphin/20 text-dolphin hover:bg-dolphin hover:text-linen rounded-full font-bold text-[10px] uppercase tracking-wider hover:-translate-y-0.5 transition-all cursor-none"
                 >
                   Get in touch
                 </button>
@@ -213,113 +266,77 @@ export default function Hero() {
                 <a
                   href="/resume.pdf"
                   download
-                  className="px-5 py-3 border border-amethyst/20 text-amethyst hover:bg-amethyst hover:text-linen rounded-full font-medium text-[10px] uppercase tracking-wider transition-all cursor-none flex items-center gap-1.5"
+                  className="px-2 py-3 text-dolphin/70 hover:text-dolphin rounded-full font-bold text-[10px] uppercase tracking-wider transition-colors cursor-none flex items-center gap-1.5 border-b border-dashed border-dolphin/20 hover:border-dolphin"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  Resume
+                  <Download className="w-3.5 h-3.5 stroke-[2.5px]" />
+                  Download Resume
                 </a>
               </Magnetic>
             </div>
 
-            {/* Social Icons Row */}
-            <div className="flex items-center gap-4 mt-4">
-              <span className="text-[9px] font-bold text-dolphin/30 uppercase tracking-widest">
-                Find Me
-              </span>
-              <span className="w-6 h-px bg-dolphin/10" />
-              
-              <div className="flex items-center gap-2">
-                <Magnetic pullFactor={0.2}>
-                  <a
-                    href="https://github.com/itsgracious"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 bg-dolphin text-linen hover:bg-amethyst transition-colors duration-300 rounded-xl cursor-none flex items-center justify-center"
-                    data-cursor="CODE"
-                  >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                      <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                  </a>
-                </Magnetic>
+          </div>
 
-                <Magnetic pullFactor={0.2}>
-                  <a
-                    href="https://linkedin.com/in/gracious-ben"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 bg-dolphin text-linen hover:bg-amethyst transition-colors duration-300 rounded-xl cursor-none flex items-center justify-center"
-                    data-cursor="LINK"
-                  >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                      <rect width="4" height="12" x="2" y="9" />
-                      <circle cx="4" cy="4" r="2" />
-                    </svg>
-                  </a>
-                </Magnetic>
+          {/* Right Column: Blended Portrait and Floating Badges */}
+          <div className="col-span-1 lg:col-span-5 flex justify-center lg:justify-end items-end relative self-end pt-12 pb-0 lg:-mb-12">
+            
+            {/* Floating circular glow behind the portrait */}
+            <div className="absolute w-[360px] h-[360px] bg-amethyst/20 rounded-full blur-[70px] pointer-events-none z-0" />
 
-                <Magnetic pullFactor={0.2}>
-                  <a
-                    href="mailto:graciousben.dev@gmail.com"
-                    className="p-2.5 bg-dolphin text-linen hover:bg-amethyst transition-colors duration-300 rounded-xl cursor-none flex items-center justify-center"
-                    data-cursor="MAIL"
-                  >
-                    <Mail className="w-3.5 h-3.5 stroke-[2.5px]" />
-                  </a>
-                </Magnetic>
+            {/* Portrait Container - Integrated/Borderless */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[420px] lg:max-w-[480px] aspect-[540/715] z-10 flex items-end justify-center lg:justify-end cursor-none"
+              data-cursor="GLOW"
+            >
+              {/* Anime portrait image, unoptimized, fills bounds */}
+              <div className="relative w-full h-full overflow-visible">
+                <Image
+                  src="/profile_anime_transparent.png"
+                  alt="Gracious Joseph Ben - Semi-realistic anime portrait"
+                  fill
+                  unoptimized
+                  className="object-contain object-bottom select-none"
+                  priority
+                />
               </div>
-            </div>
+            </motion.div>
 
-          </motion.div>
+            {/* Floating glassmorphic technology badges */}
+            {badges.map((badge, idx) => {
+              const motionProps = badgeMotion(idx);
+              return (
+                <motion.div
+                  key={idx}
+                  style={{
+                    position: "absolute",
+                    top: badge.top,
+                    left: badge.left,
+                    right: badge.right,
+                    zIndex: 20,
+                  }}
+                  animate={motionProps.animate}
+                  transition={motionProps.transition}
+                  className="badge-glass px-4 py-2 rounded-2xl flex items-center gap-2.5 text-[10px] font-bold text-dolphin hover:border-amethyst/50 transition-colors pointer-events-auto"
+                >
+                  {badge.icon}
+                  <span>{badge.name}</span>
+                </motion.div>
+              );
+            })}
+
+          </div>
+
         </div>
-
-        {/* Bottom Stats Row (New 3 stats replacing old 4) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-dolphin/10 pt-8 mt-12 md:mt-16 w-full"
-        >
-          {/* Stat 1 */}
-          <div className="flex flex-col gap-1 p-5 rounded-2xl bg-linen border border-dolphin/5 shadow-sm hover:border-amethyst/20 transition-colors duration-300">
-            <HeroCounter value={10} suffix="+" />
-            <span className="text-[10px] uppercase tracking-wider text-dolphin/40 font-bold">
-              Projects Delivered
-            </span>
-          </div>
-
-          {/* Stat 2 */}
-          <div className="flex flex-col gap-1 p-5 rounded-2xl bg-linen border border-dolphin/5 shadow-sm hover:border-amethyst/20 transition-colors duration-300">
-            <HeroCounter value={20} suffix="+" />
-            <span className="text-[10px] uppercase tracking-wider text-dolphin/40 font-bold">
-              Technical Skills
-            </span>
-          </div>
-
-          {/* Stat 3 */}
-          <div className="flex flex-col gap-1 p-5 rounded-2xl bg-linen border border-dolphin/5 shadow-sm hover:border-amethyst/20 transition-colors duration-300">
-            <HeroCounter value={25} suffix="+" />
-            <span className="text-[10px] uppercase tracking-wider text-dolphin/40 font-bold">
-              GitHub Repositories
-            </span>
-          </div>
-        </motion.div>
-
       </div>
 
-      {/* Bottom helper scroll indicator */}
-      <div className="w-full flex justify-center items-center z-10 pt-4">
-        <Magnetic>
-          <button
-            onClick={() => handleScrollTo("about")}
-            data-cursor="ABOUT"
-            className="p-3 border border-dolphin/10 hover:border-dolphin/30 rounded-full text-dolphin transition-all duration-300 cursor-none"
-          >
-            <ArrowDown className="w-4 h-4 animate-bounce" />
-          </button>
-        </Magnetic>
+      {/* Bottom helper arrow */}
+      <div className="w-full flex flex-col items-center justify-center z-10 pt-4 gap-1.5">
+        <span className="text-[8px] uppercase tracking-[0.3em] text-dolphin/30 font-bold">
+          Scroll Down
+        </span>
+        <div className="w-px h-8 bg-dolphin/15 animate-[pulse_2s_infinite]" />
       </div>
     </section>
   );
