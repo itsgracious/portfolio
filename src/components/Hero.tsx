@@ -264,7 +264,7 @@ export default function Hero() {
 
               <Magnetic>
                 <a
-                  href="/resume_final (1).pdf"
+                  href="/portfolio/resume_final (1).pdf"
                   download
                   className="px-2 py-3 text-dolphin/70 hover:text-dolphin rounded-full font-bold text-[10px] uppercase tracking-wider transition-colors cursor-none flex items-center gap-1.5 border-b border-dashed border-dolphin/20 hover:border-dolphin"
                 >
