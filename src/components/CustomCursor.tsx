@@ -7,6 +7,7 @@ export default function CustomCursor() {
   const [hovered, setHovered] = useState(false);
   const [cursorText, setCursorText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -16,6 +17,25 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const touchQuery = window.matchMedia("(pointer: coarse)");
+      setIsTouchDevice(touchQuery.matches);
+      
+      const handleQueryChange = (e: MediaQueryListEvent) => {
+        setIsTouchDevice(e.matches);
+      };
+      
+      touchQuery.addEventListener("change", handleQueryChange);
+      
+      // Cleanup listener
+      return () => {
+        touchQuery.removeEventListener("change", handleQueryChange);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -62,7 +82,7 @@ export default function CustomCursor() {
     };
   }, [cursorX, cursorY, isVisible]);
 
-  if (!isVisible) return null;
+  if (isTouchDevice || !isVisible) return null;
 
   return (
     <motion.div

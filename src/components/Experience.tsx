@@ -343,7 +343,7 @@ export default function Experience() {
                       ease: "easeInOut",
                       delay: badge.delay
                     }}
-                    className="badge-glass px-3.5 py-1.5 rounded-2xl flex items-center gap-2 text-[9px] font-bold text-dolphin hover:border-amethyst/50 transition-colors shadow-md pointer-events-auto"
+                    className="badge-glass px-3.5 py-1.5 rounded-2xl hidden sm:flex items-center gap-2 text-[9px] font-bold text-dolphin hover:border-amethyst/50 transition-colors shadow-md pointer-events-auto"
                   >
                     {badge.icon}
                     <span>{badge.name}</span>
