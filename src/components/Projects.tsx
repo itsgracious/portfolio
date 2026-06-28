@@ -85,21 +85,7 @@ const projectsList: Project[] = [
       "/portfolio/launchpad_4.png"
     ]
   },
-  {
-    id: "sonar",
-    title: "SONAR-Integrity",
-    subtitle: "AI-Powered Threat Detection System",
-    year: "2026",
-    tech: ["ESP32-S3", "TensorFlow Lite Micro", "IoT", "Acoustic Fingerprinting", "LTE"],
-    description: [
-      "Developed an edge-AI security system monitoring assets via acoustic fingerprinting and environmental sensing without cameras.",
-      "Trained and deployed a lightweight CNN on ESP32-S3 for real-time threat classification and anomaly detection.",
-      "Integrated LTE alerts, gas monitoring, servo locking, and status indicators for autonomous response."
-    ],
-    github: "https://github.com/itsgracious",
-    visualType: "sonar",
-    blueprintDetail: "Hardware Nodes: I2S Digital Mic -> ESP32-S3 microcontroller -> FFT Spectrogram generation -> CNN Inference (TFLite Micro) -> LTE Alert Node / Servo Lock driver. Powered by a low-draw lithium battery."
-  },
+
   {
     id: "sentinel",
     title: "Sentinel NIDS",
@@ -650,32 +636,7 @@ function ProjectVisual({ type }: { type: Project["visualType"] }) {
     );
   }
 
-  if (type === "sonar") {
-    return (
-      <div className="relative w-full h-full border border-dolphin/10 rounded-xl overflow-hidden flex flex-col justify-between p-4 bg-linen/25 font-mono text-[9px] text-dolphin/40 select-none">
-        <div className="flex justify-between items-center w-full">
-          <span>ESP32-S3 AUDIO</span>
-          <span>INFERENCE: 18ms</span>
-        </div>
-        
-        {/* Sound frequency bars */}
-        <div className="absolute inset-0 flex items-center justify-center gap-1 px-8 pointer-events-none">
-          {[20, 45, 60, 30, 80, 95, 40, 70, 50, 15, 65, 85, 30].map((h, idx) => (
-            <div
-              key={idx}
-              className="flex-grow bg-amethyst/30 rounded-t"
-              style={{ height: `${h}%` }}
-            />
-          ))}
-        </div>
 
-        <div className="flex justify-between items-center w-full border-t border-dolphin/10 pt-2">
-          <span>CNN NOISE ANALYTICS</span>
-          <span>LTE CONNECTED</span>
-        </div>
-      </div>
-    );
-  }
 
   if (type === "network") {
     return (

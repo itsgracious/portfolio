@@ -399,7 +399,13 @@ export default function Experience() {
                 <button
                   onClick={() => {
                     const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                    if (el) {
+                      if (typeof window !== "undefined" && (window as any).lenis) {
+                        (window as any).lenis.scrollTo(el);
+                      } else {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
                   }}
                   className="px-6 py-3.5 bg-amethyst text-linen rounded-full font-bold text-[10px] uppercase tracking-wider shadow-lg hover:shadow-amethyst/20 transition-all flex items-center gap-2 cursor-none"
                   data-cursor="GO"

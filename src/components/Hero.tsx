@@ -94,7 +94,13 @@ const TechIcons = {
 export default function Hero() {
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      if (typeof window !== "undefined" && (window as any).lenis) {
+        (window as any).lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   // Badge layout coordinates surrounding the portrait (mockup-matched)
