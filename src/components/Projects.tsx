@@ -99,7 +99,14 @@ const projectsList: Project[] = [
     ],
     github: "https://github.com/itsgracious",
     visualType: "network",
-    blueprintDetail: "Network Flow: Raw Packets -> Pi 3B Socket -> Feature Extractor -> Isolation Forest Anomaly Filter -> Random Forest Classifier (CICIDS2017 training) -> Flask Dashboard (WebSocket stats) -> SMS alerts."
+    blueprintDetail: "Network Flow: Raw Packets -> Pi 3B Socket -> Feature Extractor -> Isolation Forest Anomaly Filter -> Random Forest Classifier (CICIDS2017 training) -> Flask Dashboard (WebSocket stats) -> SMS alerts.",
+    images: [
+      "/portfolio/sentinel_cover.jpg",
+      "/portfolio/sentinel_1.jpg",
+      "/portfolio/sentinel_2.jpg",
+      "/portfolio/sentinel_3.jpg",
+      "/portfolio/sentinel_4.jpg"
+    ]
   }
 ];
 
@@ -182,10 +189,12 @@ function ProjectCard({ project, isEven, onOpenDetails }: CardProps) {
     ? "/portfolio/cypher_1.png" 
     : project.id === "notescleanser" 
       ? "/portfolio/cleanser_2.png" 
-      : "/portfolio/launchpad_cover.jpg";
+      : project.id === "sentinel"
+        ? "/portfolio/sentinel_cover.jpg"
+        : "/portfolio/launchpad_cover.jpg";
   
   const isMobile = windowSize.width < 640;
-  const isWidescreen = project.id === "cypher" || project.id === "launchpad";
+  const isWidescreen = project.id === "cypher" || project.id === "launchpad" || project.id === "sentinel";
   
   const activeHeight = isWidescreen 
     ? (isMobile ? Math.min(windowSize.width * 0.9, 340) * 0.5625 : 450)
